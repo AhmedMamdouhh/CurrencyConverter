@@ -88,7 +88,7 @@
                             android:text="@string/currency_picker_currency_rate"
                             android:textColor="@color/colorPrimary"
                             android:textSize="@dimen/sp15"
-                            app:text="@{String.valueOf(currencyObject.currencyRate)}" />
+                            app:text="@{currencyObject.currencyRate}" />
 
                         <TextView
                             android:layout_width="0dp"

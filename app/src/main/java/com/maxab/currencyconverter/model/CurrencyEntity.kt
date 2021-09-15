@@ -43,7 +43,7 @@ class CurrencyEntity:BaseObservable(),Parcelable {
 
     @IgnoredOnParcel
     @get:Bindable
-    var currencyRate: Double = 0.0
+    var currencyRate: String =""
         set(value) {
             field = value
             notifyPropertyChanged(BR.currencyRate)

@@ -1,6 +1,5 @@
 package com.maxab.currencyconverter.ui.currency_picker
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -56,6 +55,8 @@ class CurrencyPickerViewModel @Inject constructor(
             for (entity in currencyOfflineList)
                 currencyPickerRepository.insertCurrenciesToDatabase(entity)
         }
+
+
     }
 
     private fun getCurrencyListOffline() {

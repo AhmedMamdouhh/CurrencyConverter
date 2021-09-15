@@ -11,6 +11,7 @@
     <string name="currency_picker_currency_rate">1.2324343</string>
     <string name="currency_picker_switch_online">Online</string>
     <string name="currency_picker_switch_offline">Offline</string>
+    <string name="currency_picker_welcome">Welcome</string>
 
     <!-- Currency Converter -->
     <string name="currency_converter_title">Currency Converter</string>
@@ -20,7 +21,7 @@
     <string name="currency_converter_amount_title">Enter amount:</string>
     <string name="currency_converter_amount_value">0.00 </string>
     <string name="currency_converter_from_amount">1 </string>
-    <string name="currency_converter_amount_with_sub">1 × </string>
+    <string name="currency_converter_amount_with_sub">× </string>
     <string name="currency_converter_equal"> = </string>
     <string name="currency_converter_result">123.1</string>
 

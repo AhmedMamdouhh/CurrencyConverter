@@ -17,6 +17,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ml_currency_picker_parent"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -37,34 +38,28 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
             android:scaleType="fitStart"
-
             android:src="@drawable/ic_wave_bottom_light"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
 
-        <RelativeLayout
-            android:id="@+id/rl_currency_picker_toolbar_container"
-            android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
-            app:layout_constraintEnd_toEndOf="parent"
+        <TextView
+            android:id="@+id/tv_currency_picker_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/dp16w"
+            android:layout_marginTop="@dimen/dp16w"
+            android:fontFamily="@font/convergence"
+            android:text="@string/currency_picker_title"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/sp18"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/tv_currency_picker_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_gravity="center"
-                android:layout_marginStart="@dimen/dp16w"
-                android:fontFamily="@font/convergence"
-                android:text="@string/currency_picker_title"
-                android:textColor="@color/colorAccent"
-                android:textSize="@dimen/sp18"
-                android:textStyle="bold" />
 
-        </RelativeLayout>
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/sc_currency_picker_switcher"
@@ -79,7 +74,7 @@
             android:thumb="@drawable/shape_switch_thumb"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rl_currency_picker_toolbar_container"
+            app:layout_constraintTop_toBottomOf="@+id/tv_currency_picker_name"
             app:track="@drawable/shape_switch_track" />
 
         <androidx.cardview.widget.CardView
@@ -156,7 +151,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cv_currency_picker_base_currency"
             tools:listitem="@layout/item_to_currency" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

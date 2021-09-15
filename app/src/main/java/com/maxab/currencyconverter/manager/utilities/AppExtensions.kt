@@ -2,6 +2,7 @@ package com.maxab.currencyconverter.manager.utilities
 
 import android.content.Context
 import android.os.Build
+import android.util.Log
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.view.animation.LayoutAnimationController
@@ -11,6 +12,10 @@ import com.maxab.currencyconverter.manager.base.MainActivity
 import com.maxab.currencyconverter.manager.connection.Resource
 import com.maxab.currencyconverter.model.CurrencyEntity
 import com.maxab.currencyconverter.model.CurrencyResponse
+import java.math.BigDecimal
+import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
+import java.text.NumberFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -35,7 +40,11 @@ private fun fillCurrencyData(
         val pound = Currency.getInstance(currencyCode)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             pound.getSymbol(Locale.getDefault(Locale.Category.DISPLAY))
-            currencyEntity.currencyRate = currencyRate
+
+            val decimalFormat = DecimalFormat("#.######")
+            val y = decimalFormat.format(currencyRate)
+            Log.e("sdfdsfsdf", "fillCurrencyData: $y")
+            currencyEntity.currencyRate = y
             currencyEntity.currencyName = pound.displayName
             currencyEntity.currencyCode = currencyCode
             currencyEntity.currencySymbol = pound.symbol
@@ -74,4 +83,5 @@ fun MainActivity.statusBarColor(color: Int) {
             getColor(color)
     }
 }
+
 

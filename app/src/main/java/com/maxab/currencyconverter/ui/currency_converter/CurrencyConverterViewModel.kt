@@ -26,7 +26,7 @@ class CurrencyConverterViewModel @Inject constructor(
     private fun getCurrencyRateOnline(
         fromCurrency: CurrencyEntity,
         toCurrency: CurrencyEntity,
-        amount: Double,
+        amount: String,
         dataMode: String
     ) {
 
@@ -39,14 +39,14 @@ class CurrencyConverterViewModel @Inject constructor(
                         currencyConverterRepository.convertTwoCurrencies(
                             fromCurrency.currencyCode,
                             toCurrency.currencyCode,
-                            amount
+                            amount.toDouble()
                         )
                     )
                 responseManager.hideLoading()
             }
         } else if (dataMode == Constants.MODE_OFFLINE) {
             _observeConvertRate.value = Event(
-                toCurrency.currencyRate * amount
+                toCurrency.currencyRate.toDouble() * amount.toDouble()
             )
         }
     }
@@ -58,7 +58,7 @@ class CurrencyConverterViewModel @Inject constructor(
         amount: EditText,
         dataMode: String
     ) {
-        getCurrencyRateOnline(fromCurrency, toCurrency, amount.text.toString().toDouble(), dataMode)
+        getCurrencyRateOnline(fromCurrency, toCurrency, amount.text.toString(), dataMode)
     }
 
     fun onCloseClicked() {

@@ -1,15 +1,10 @@
 package com.maxab.currencyconverter.ui.currency_picker
 
 import android.app.Dialog
-import android.os.Build
 import android.os.Bundle
 import android.view.*
 import android.view.View.GONE
 import android.view.View.VISIBLE
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatDelegate
-import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO
-import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -35,13 +30,15 @@ class CurrencyPickerFragment : Fragment() {
 
     private lateinit var currencyPickerBinding: FragmentCurrencyPickerBinding
     private val currencyPickerViewModel: CurrencyPickerViewModel by viewModels()
+
     //TODO Inject adapters and dialog:
     private lateinit var toCurrencyPickerAdapter: ToCurrencyPickerAdapter
     private lateinit var fromCurrencyPickerAdapter: FromCurrencyPickerAdapter
-    private lateinit var dialog : Dialog
+    private lateinit var dialog: Dialog
     private var dataMode = Constants.MODE_ONLINE
 
-    @Inject lateinit var currencyEntity:CurrencyEntity
+    @Inject
+    lateinit var currencyEntity: CurrencyEntity
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -66,15 +63,15 @@ class CurrencyPickerFragment : Fragment() {
     }
 
 
-    private fun initializeBaseCurrency(){
-        currencyEntity.currencyName= getString(R.string.currency_picker_base_currency_name)
+    private fun initializeBaseCurrency() {
+        currencyEntity.currencyName = getString(R.string.currency_picker_base_currency_name)
         currencyEntity.currencySymbol = getString(R.string.currency_picker_base_currency_symbol)
         currencyEntity.currencyCode = getString(R.string.currency_picker_base_currency_code)
         currencyPickerBinding.currencyObject = currencyEntity
     }
 
-    private fun observeSwitchOnline(){
-        currencyPickerViewModel.observeSwitchOnline.observe(viewLifecycleOwner,EventObserver{
+    private fun observeSwitchOnline() {
+        currencyPickerViewModel.observeSwitchOnline.observe(viewLifecycleOwner, EventObserver {
             currencyPickerBinding.cvCurrencyPickerBaseCurrency.isClickable = true
             currencyPickerBinding.ivCurrencyPickerLock.visibility = GONE
             dataMode = Constants.MODE_ONLINE
@@ -84,8 +81,8 @@ class CurrencyPickerFragment : Fragment() {
         })
     }
 
-    private fun observeSwitchOffline(){
-        currencyPickerViewModel.observeSwitchOffline.observe(viewLifecycleOwner,EventObserver{
+    private fun observeSwitchOffline() {
+        currencyPickerViewModel.observeSwitchOffline.observe(viewLifecycleOwner, EventObserver {
             currencyPickerBinding.cvCurrencyPickerBaseCurrency.isClickable = false
             currencyPickerBinding.ivCurrencyPickerLock.visibility = VISIBLE
             initializeBaseCurrency()
@@ -97,25 +94,33 @@ class CurrencyPickerFragment : Fragment() {
     }
 
     private fun observeToCurrencySelected() {
-        currencyPickerViewModel.observeOnToCurrencySelected.observe(viewLifecycleOwner,EventObserver{currencyObject->
-            val action = CurrencyPickerFragmentDirections.actionCurrencyPickerToCurrencyConverterDialog(
-                currencyObject,currencyPickerBinding.currencyObject,dataMode)
-            findNavController().navigate(action)
-        })
+        currencyPickerViewModel.observeOnToCurrencySelected.observe(
+            viewLifecycleOwner,
+            EventObserver { currencyObject ->
+                val action =
+                    CurrencyPickerFragmentDirections.actionCurrencyPickerToCurrencyConverterDialog(
+                        currencyObject, currencyPickerBinding.currencyObject, dataMode
+                    )
+                findNavController().navigate(action)
+            })
     }
 
 
     private fun observeFromDialogClicked() {
-        currencyPickerViewModel.observeOnFromDialogClicked.observe(viewLifecycleOwner,EventObserver{
-            currencyPickerBinding.currencyObject = it
-            dialog.hide()
-        })
+        currencyPickerViewModel.observeOnFromDialogClicked.observe(
+            viewLifecycleOwner,
+            EventObserver {
+                currencyPickerBinding.currencyObject = it
+                dialog.hide()
+            })
     }
 
     private fun observeFromCurrencyPickerClicked() {
-        currencyPickerViewModel.observeOnFromCurrencyClicked.observe(viewLifecycleOwner,EventObserver{
-            dialog.show()
-        })
+        currencyPickerViewModel.observeOnFromCurrencyClicked.observe(
+            viewLifecycleOwner,
+            EventObserver {
+                dialog.show()
+            })
     }
 
     private fun observeCurrencyFullList() {
@@ -126,14 +131,16 @@ class CurrencyPickerFragment : Fragment() {
     }
 
     private fun observeCurrencyFullListOffline() {
-        currencyPickerViewModel.observeCurrencyFullListOffline.observe(viewLifecycleOwner,EventObserver{
-            initializeFromCurrencyList(it)
-            initializeToCurrencyList(it)
-        })
+        currencyPickerViewModel.observeCurrencyFullListOffline.observe(
+            viewLifecycleOwner,
+            EventObserver {
+                initializeFromCurrencyList(it)
+                initializeToCurrencyList(it)
+            })
     }
 
 
-    private fun initializeToCurrencyList(currencyList:ArrayList<CurrencyEntity>){
+    private fun initializeToCurrencyList(currencyList: ArrayList<CurrencyEntity>) {
         toCurrencyPickerAdapter = ToCurrencyPickerAdapter(currencyList, currencyPickerViewModel)
         currencyPickerBinding.rvToCurrencyPickerList.layoutManager =
             LinearLayoutManager(requireContext())
@@ -141,18 +148,19 @@ class CurrencyPickerFragment : Fragment() {
         recyclerAnimationExtension(context, currencyPickerBinding.rvToCurrencyPickerList)
     }
 
-    private fun initializeFromCurrencyList(currencyList:ArrayList<CurrencyEntity>){
+    private fun initializeFromCurrencyList(currencyList: ArrayList<CurrencyEntity>) {
 
         //Initialize dialog:
         dialog = Dialog(requireActivity())
         dialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        Objects.requireNonNull<Window>(dialog.getWindow()).setBackgroundDrawableResource(android.R.color.transparent)
+        Objects.requireNonNull<Window>(dialog.getWindow())
+            .setBackgroundDrawableResource(android.R.color.transparent)
         dialog.setContentView(R.layout.dialog_from_currency_picker)
 
         //initialize RecyclerView
         val recyclerView = dialog.findViewById<RecyclerView>(R.id.rv_from_currency_picker_list)
-        fromCurrencyPickerAdapter = FromCurrencyPickerAdapter(currencyList,currencyPickerViewModel)
+        fromCurrencyPickerAdapter = FromCurrencyPickerAdapter(currencyList, currencyPickerViewModel)
         recyclerView.adapter = fromCurrencyPickerAdapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
     }
