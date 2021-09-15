@@ -1,5 +1,8 @@
 
-https://user-images.githubusercontent.com/34347060/133519485-69fa7be7-ddc6-4554-badb-131793d8a3b3.mp4
+
+![CurrencyConverter](https://user-images.githubusercontent.com/34347060/133524142-d257837e-42d9-4c7e-951d-1da555cd7485.gif)
+
+
 
 
 
