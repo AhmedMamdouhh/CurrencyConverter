@@ -26,6 +26,9 @@
         <argument android:name="fromCurrencyObject"
             app:argType="com.maxab.currencyconverter.model.CurrencyEntity"
             app:nullable="true" />
+        <argument
+            android:name="dataMode"
+            app:argType="string" />
     </dialog>
 
 </navigation>

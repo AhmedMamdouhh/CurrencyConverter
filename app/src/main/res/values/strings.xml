@@ -5,9 +5,12 @@
     <string name="currency_picker_title">Currency Picker</string>
     <string name="currency_picker_base_currency_name">European euro</string>
     <string name="currency_picker_base_currency_symbol">€</string>
+    <string name="currency_picker_base_currency_code">EUR</string>
     <string name="currency_picker_currency_name">United States Dollar</string>
     <string name="currency_picker_currency_code">USD</string>
     <string name="currency_picker_currency_rate">1.2324343</string>
+    <string name="currency_picker_switch_online">Online</string>
+    <string name="currency_picker_switch_offline">Offline</string>
 
     <!-- Currency Converter -->
     <string name="currency_converter_title">Currency Converter</string>
@@ -16,6 +19,10 @@
     <string name="currency_converter_symbol">€</string>
     <string name="currency_converter_amount_title">Enter amount:</string>
     <string name="currency_converter_amount_value">0.00 </string>
+    <string name="currency_converter_from_amount">1 </string>
+    <string name="currency_converter_amount_with_sub">1 × </string>
+    <string name="currency_converter_equal"> = </string>
+    <string name="currency_converter_result">123.1</string>
 
 
 

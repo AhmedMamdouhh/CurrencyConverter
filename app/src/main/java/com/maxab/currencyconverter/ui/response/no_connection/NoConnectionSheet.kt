@@ -12,10 +12,10 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.maxab.currencyconverter.R
 import com.maxab.currencyconverter.databinding.LayoutNoConnectionBinding
+import com.maxab.currencyconverter.manager.base.BaseBottomSheet
 
-class NoConnectionSheet : BottomSheetDialogFragment() {
+class NoConnectionSheet : BaseBottomSheet() {
     private lateinit var noConnectionBinding: LayoutNoConnectionBinding
-    private var bottomSheetBehavior: BottomSheetBehavior<*>? = null
 
 
     override fun onCreateView(
@@ -32,13 +32,8 @@ class NoConnectionSheet : BottomSheetDialogFragment() {
     }
 
     fun onCloseClicked() {
-        try {
-            bottomSheetBehavior!!.isHideable = true
-            bottomSheetBehavior!!.state = BottomSheetBehavior.STATE_HIDDEN
-        } catch (ignored: NullPointerException) {
-        }
+        closeSheet()
     }
-
 
 
 }

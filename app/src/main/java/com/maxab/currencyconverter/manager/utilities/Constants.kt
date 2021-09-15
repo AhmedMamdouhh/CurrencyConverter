@@ -11,6 +11,8 @@ object Constants {
     const val FAILED = "failed"
     const val MESSAGE = "message"
 
+    const val MODE_OFFLINE="offline"
+    const val MODE_ONLINE="online"
 
     //API
     const val FROM = "from"
@@ -23,5 +25,9 @@ object Constants {
     const val SUCCESS_SHEET = "successSheet"
     const val ERROR_SHEET = "errorSheet"
     const val NO_CONNECTION_SHEET = "noConnectionSheet"
+
+    //Data Base
+    const val CURRENCY_DATA_BASE_NAME = "currency_database"
+    const val CURRENCY_TABLE_NAME = "currency_table"
 
 }

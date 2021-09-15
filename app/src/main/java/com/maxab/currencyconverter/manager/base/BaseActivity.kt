@@ -10,7 +10,6 @@ import android.view.Window
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.maxab.currencyconverter.R
-import com.maxab.currencyconverter.manager.ResponseManager
 import com.maxab.currencyconverter.manager.utilities.Constants
 import com.maxab.currencyconverter.manager.utilities.EventObserver
 import com.maxab.currencyconverter.ui.response.error.ErrorSheet

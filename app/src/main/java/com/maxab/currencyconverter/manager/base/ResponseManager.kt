@@ -1,4 +1,4 @@
-package com.maxab.currencyconverter.manager
+package com.maxab.currencyconverter.manager.base
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

@@ -21,23 +21,24 @@
         android:layout_height="match_parent">
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/iv_login_top_cloud"
+            android:id="@+id/iv_currency_picker_top_cloud"
             android:layout_width="@dimen/dp150w"
             android:layout_height="@dimen/dp150h"
             android:layout_alignParentEnd="true"
             android:scaleType="fitXY"
-            android:src="@drawable/ic_wave_top"
+            android:src="@drawable/ic_wave_top_light"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/iv_login_bottom_cloud"
+            android:id="@+id/iv_currency_picker_bottom_cloud"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/dp200h"
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
             android:scaleType="fitStart"
-            android:src="@drawable/ic_wave_bottom"
+
+            android:src="@drawable/ic_wave_bottom_light"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -56,71 +57,93 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
+                android:layout_marginStart="@dimen/dp16w"
                 android:fontFamily="@font/convergence"
                 android:text="@string/currency_picker_title"
-                android:textStyle="bold"
                 android:textColor="@color/colorAccent"
-                android:textSize="@dimen/sp18" />
-
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/sc_currency_picker_switcher"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="@dimen/dp16w"
-                android:layout_marginEnd="@dimen/dp16w"
-                android:layout_toEndOf="@+id/tv_currency_picker_title" />
+                android:textSize="@dimen/sp18"
+                android:textStyle="bold" />
 
         </RelativeLayout>
 
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/sc_currency_picker_switcher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="@dimen/dp8w"
+            android:layout_marginEnd="@dimen/dp16w"
+            android:checked="true"
+            android:onCheckedChanged="@{(switch, checked) -> currencyPickerListener.onSwitchChecked(checked)}"
+            android:thumb="@drawable/shape_switch_thumb"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rl_currency_picker_toolbar_container"
+            app:track="@drawable/shape_switch_track" />
+
         <androidx.cardview.widget.CardView
-            android:onClick="@{()->currencyPickerListener.onFromCurrencyPickerClicked()}"
             android:id="@+id/cv_currency_picker_base_currency"
             android:layout_width="@dimen/dp130w"
             android:layout_height="@dimen/dp130h"
             android:layout_margin="@dimen/dp16w"
+            android:onClick="@{()->currencyPickerListener.onFromCurrencyPickerClicked()}"
             app:cardCornerRadius="@dimen/dp8w"
             app:cardElevation="@dimen/dp4w"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rl_currency_picker_toolbar_container">
+            app:layout_constraintTop_toBottomOf="@+id/sc_currency_picker_switcher">
 
-
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="@dimen/dp8w">
+                android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/tv_from_currency_picker_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_currency_picker_lock"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp40h"
                     android:layout_gravity="center"
-                    android:fontFamily="@font/montserrat_semi_bold"
-                    android:gravity="center"
-                    android:text="@string/currency_picker_base_currency_name"
-                    app:text="@{currencyObject.currencyName}"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="@dimen/sp14" />
+                    android:padding="@dimen/dp12w"
+                    android:visibility="gone"
+                    android:layout_alignParentBottom="true"
+                    android:src="@drawable/ic_lock" />
 
-                <TextView
-                    android:id="@+id/tv_from_currency_picker_symbol"
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:fontFamily="@font/montserrat_bold"
                     android:gravity="center"
-                    android:text="@string/currency_picker_base_currency_symbol"
-                    app:text="@{currencyObject.currencySymbol}"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="@dimen/sp40" />
+                    android:orientation="vertical"
+                    android:padding="@dimen/dp8w">
 
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/tv_from_currency_picker_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/montserrat_semi_bold"
+                        android:gravity="center"
+                        android:text="@string/currency_picker_base_currency_name"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/sp14"
+                        app:text="@{currencyObject.currencyName}" />
 
+                    <TextView
+                        android:id="@+id/tv_from_currency_picker_symbol"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:gravity="center"
+                        android:text="@string/currency_picker_base_currency_symbol"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/sp40"
+                        app:text="@{currencyObject.currencySymbol}" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -128,11 +151,11 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/dp16w"
-            tools:listitem="@layout/item_to_currency"
-            app:layout_constraintTop_toBottomOf="@+id/cv_currency_picker_base_currency"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cv_currency_picker_base_currency"
+            tools:listitem="@layout/item_to_currency" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

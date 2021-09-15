@@ -9,7 +9,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.maxab.currencyconverter.R
 
-open class BaseBottomSheet: BottomSheetDialogFragment() {
+abstract class BaseBottomSheet: BottomSheetDialogFragment() {
 
     private var bottomSheetBehavior: BottomSheetBehavior<*>? = null
 
@@ -34,6 +34,14 @@ open class BaseBottomSheet: BottomSheetDialogFragment() {
             bottomSheetBehavior = behavior as BottomSheetBehavior<*>?
             bottomSheetBehavior!!.peekHeight = view.measuredHeight
             (finalBottomSheet!!.parent as View).setBackgroundColor(Color.TRANSPARENT)
+        }
+    }
+
+    fun closeSheet(){
+        try {
+            bottomSheetBehavior!!.isHideable = true
+            bottomSheetBehavior!!.state = BottomSheetBehavior.STATE_HIDDEN
+        } catch (ignored: NullPointerException) {
         }
     }
 }

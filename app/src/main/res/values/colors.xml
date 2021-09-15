@@ -9,6 +9,8 @@
 
     <color name="colorBlackTransparent">#33000000</color>
     <color name="colorLightGrey">#EBEEF1</color>
+    <color name="colorGreen">#34c759</color>
+    <color name="colorAlphaPrimary">#E6F1CD85</color>FFB319
 
 
 </resources>

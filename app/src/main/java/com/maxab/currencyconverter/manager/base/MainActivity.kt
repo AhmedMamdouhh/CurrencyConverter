@@ -1,14 +1,12 @@
-package com.maxab.currencyconverter
+package com.maxab.currencyconverter.manager.base
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import com.maxab.currencyconverter.R
 import com.maxab.currencyconverter.databinding.ActivityMainBinding
-import com.maxab.currencyconverter.manager.base.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.*
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity() {

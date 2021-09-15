@@ -1,13 +1,17 @@
 package com.maxab.currencyconverter.di
 
-import com.maxab.currencyconverter.manager.ResponseManager
+import android.content.Context
+import androidx.room.Room
+import com.maxab.currencyconverter.dp.CurrencyDataBase
+import com.maxab.currencyconverter.manager.base.ResponseManager
 import com.maxab.currencyconverter.manager.connection.Api
 import com.maxab.currencyconverter.manager.connection.ApiEndPoints
-import com.maxab.currencyconverter.manager.connection.Resource
+import com.maxab.currencyconverter.manager.utilities.Constants
 import com.maxab.currencyconverter.model.CurrencyEntity
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -48,26 +52,28 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideResponseManager()= ResponseManager()
+    fun provideResponseManager() = ResponseManager()
+
+    @Provides
+    fun provideCurrencyEntity() = CurrencyEntity()
+
+
+
+    //Room configuration :
+    @Singleton
+    @Provides
+    fun provideCurrencyDatabase(
+        @ApplicationContext context: Context
+    ) = Room.databaseBuilder(
+        context,
+        CurrencyDataBase::class.java,
+        Constants.CURRENCY_DATA_BASE_NAME
+    ).allowMainThreadQueries()
+        .build()
 
     @Singleton
     @Provides
-    fun provideCurrencyEntity()=CurrencyEntity()
+    fun provideNCurrencyDao(currencyDataBase: CurrencyDataBase) = currencyDataBase.getCurrencyDao()
 
-
-//    //Room configuration :
-//    @Singleton
-//    @Provides
-//    fun provideNewsDatabase(
-//        @ApplicationContext context: Context
-//    ) = Room.databaseBuilder(
-//        context,
-//        NewsDataBase::class.java,
-//        SyncStateContract.Constants.NEWS_DATABASE_NAME
-//    )
-//
-//    @Singleton
-//    @Provides
-//    fun provideNewsDao(newsDataBase: NewsDataBase) = newsDataBase.getNewsDao()
 
 }
