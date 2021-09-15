@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="currencyObject"
+            type="com.maxab.currencyconverter.model.CurrencyEntity" />
+
+        <variable
+            name="currencyListener"
+            type="com.maxab.currencyconverter.ui.currency_picker.CurrencyPickerViewModel" />
+
+    </data>
+
+    <LinearLayout
+        android:onClick="@{()->currencyListener.onFromCurrencyDialogClicked(currencyObject)}"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp8w"
+        android:layout_marginEnd="@dimen/dp8w"
+        android:layout_marginTop="@dimen/dp8w"
+        android:layout_marginBottom="@dimen/dp16w"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp8w"
+            android:layout_marginEnd="@dimen/dp8w"
+            android:layout_marginTop="@dimen/dp8w"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:text="@{currencyObject.currencyName}"
+                android:layout_marginBottom="@dimen/dp8w"
+                android:fontFamily="@font/convergence"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:text="@string/currency_picker_currency_name"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/sp16" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:fontFamily="@font/convergence"
+                android:text="@string/currency_picker_currency_code"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/sp13"
+                app:text="@{currencyObject.currencyCode}" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:textStyle="bold"
+            android:layout_marginStart="@dimen/dp8w"
+            android:layout_marginEnd="@dimen/dp8w"
+            android:fontFamily="@font/convergence"
+            app:text="@{currencyObject.currencySymbol}"
+            android:text="@string/currency_picker_base_currency_symbol"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/sp12" />
+
+    </LinearLayout>
+
+</layout>

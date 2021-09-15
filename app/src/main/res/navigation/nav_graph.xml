@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/currencyPicker"
+    android:id="@+id/nav_graph">
+
+    <!-- Currency Picker Fragment -->
+    <fragment
+        android:id="@+id/currencyPicker"
+        android:name="com.maxab.currencyconverter.ui.currency_picker.CurrencyPickerFragment"
+        android:label="Currency Picker" >
+
+        <action
+            android:id="@+id/action_currencyPicker_to_currencyConverterDialog"
+            app:destination="@id/currencyConverterDialog" />
+    </fragment>
+    <!-- Currency Converter Dialog-->
+    <dialog
+        android:id="@+id/currencyConverterDialog"
+        android:name="com.maxab.currencyconverter.ui.currency_converter.CurrencyConverterDialog"
+        android:label="CurrencyConverterDialog" >
+        <argument
+            android:name="toCurrencyObject"
+            app:argType="com.maxab.currencyconverter.model.CurrencyEntity" />
+        <argument android:name="fromCurrencyObject"
+            app:argType="com.maxab.currencyconverter.model.CurrencyEntity"
+            app:nullable="true" />
+    </dialog>
+
+</navigation>

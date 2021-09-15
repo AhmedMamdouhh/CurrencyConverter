@@ -1,0 +1,45 @@
+package com.maxab.currencyconverter.ui.response.no_connection
+
+import android.graphics.Color
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.view.WindowManager
+import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.databinding.DataBindingUtil
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.maxab.currencyconverter.R
+import com.maxab.currencyconverter.databinding.LayoutNoConnectionBinding
+
+class NoConnectionSheet : BottomSheetDialogFragment() {
+    private lateinit var noConnectionBinding: LayoutNoConnectionBinding
+    private var bottomSheetBehavior: BottomSheetBehavior<*>? = null
+
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        noConnectionBinding =
+            DataBindingUtil.inflate(inflater, R.layout.layout_no_connection, container, false)
+        noConnectionBinding.lifecycleOwner = this
+        noConnectionBinding.clickListener = this
+
+        return noConnectionBinding.root
+    }
+
+    fun onCloseClicked() {
+        try {
+            bottomSheetBehavior!!.isHideable = true
+            bottomSheetBehavior!!.state = BottomSheetBehavior.STATE_HIDDEN
+        } catch (ignored: NullPointerException) {
+        }
+    }
+
+
+
+}
+

@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Currency Converter</string>
+
+    <!-- Currency Picker -->
+    <string name="currency_picker_title">Currency Picker</string>
+    <string name="currency_picker_base_currency_name">European euro</string>
+    <string name="currency_picker_base_currency_symbol">€</string>
+    <string name="currency_picker_currency_name">United States Dollar</string>
+    <string name="currency_picker_currency_code">USD</string>
+    <string name="currency_picker_currency_rate">1.2324343</string>
+
+    <!-- Currency Converter -->
+    <string name="currency_converter_title">Currency Converter</string>
+    <string name="currency_converter_from_name">European euro</string>
+    <string name="currency_converter_to_name">United States Dollar</string>
+    <string name="currency_converter_symbol">€</string>
+    <string name="currency_converter_amount_title">Enter amount:</string>
+    <string name="currency_converter_amount_value">0.00 </string>
+
+
+
+    <!--Errors -->
+    <!-- base errors-->
+    <string name="error_no_connection">Oops , there\'s no Network connection</string>
+    <string name="error_message_title">Error!</string>
+    <string name="success_message_title">Success</string>
+
+</resources>

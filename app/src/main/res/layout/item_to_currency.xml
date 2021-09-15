@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="currencyObject"
+            type="com.maxab.currencyconverter.model.CurrencyEntity" />
+
+        <variable
+            name="currencyListener"
+            type="com.maxab.currencyconverter.ui.currency_picker.CurrencyPickerViewModel" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:onClick="@{()->currencyListener.onToCurrencySelected(currencyObject)}"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp8w"
+        app:cardCornerRadius="@dimen/dp8w"
+        app:cardElevation="@dimen/dp4w">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="@dimen/dp60w"
+                    android:layout_height="@dimen/dp60h"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/dp8w"
+                    app:cardCornerRadius="@dimen/dp30h"
+                    app:cardElevation="@dimen/dp4w">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/convergence"
+                        android:gravity="center"
+                        app:text="@{currencyObject.currencySymbol}"
+                        android:text="@string/currency_picker_base_currency_symbol"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/sp20" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/dp8w"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:text="@{currencyObject.currencyName}"
+                        android:layout_marginBottom="@dimen/dp8w"
+                        android:fontFamily="@font/convergence"
+                        android:textStyle="bold"
+                        android:text="@string/currency_picker_currency_name"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/sp16" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="start"
+                            android:fontFamily="@font/convergence"
+                            android:text="@string/currency_picker_currency_rate"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/sp15"
+                            app:text="@{String.valueOf(currencyObject.currencyRate)}" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="end"
+                            android:fontFamily="@font/convergence"
+                            android:text="@string/currency_picker_currency_code"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="@dimen/sp15"
+                            app:text="@{currencyObject.currencyCode}" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>
