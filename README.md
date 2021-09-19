@@ -20,6 +20,7 @@ Currency Converter is a simple app that allows the user to convert currencies OF
 - Observer pattern.
 - Repository pattern
 - Room.
+- Retrofit.
 - Navigation component with safe args.
 - Motion layout animation.
 - Databinding.
